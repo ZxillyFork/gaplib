@@ -14,9 +14,9 @@ msg() {
 
 update_fresh_container() {
     header "Upgrading and installing packages"
-    sudo DEBIAN_FRONTEND=noninteractive apt-get -qq update -y >/dev/null
+    sudo DEBIAN_FRONTEND=noninteractive apt-get -qq update -y
     sudo DEBIAN_FRONTEND=noninteractive apt-get -qq install dotnet-sdk-8.0 make \
-        gcc g++ autoconf automake m4 libtool -y >/dev/null
+        gcc g++ autoconf automake m4 libtool -y
 
     if [ $? -ne 0 ]; then
         exit 32
