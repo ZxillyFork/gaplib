@@ -69,18 +69,12 @@ build_image_in_container() {
 
   msg "Copy the patch file into gha-builder"
   lxc file push ${BUILD_PREREQS_PATH}/${PATCH_FILE} "${BUILD_CONTAINER}${BUILD_HOME}/"
-
-  msg "Copy the register-runner.sh script into gha-builder"
-  lxc file push --mode 0755 ${BUILD_PREREQS_PATH}/register-runner.sh "${BUILD_CONTAINER}/opt/register-runner.sh"
   
   msg "Copy the /etc/rc.local - required in case podman is used"
   lxc file push --mode 0755 ${BUILD_PREREQS_PATH}/rc.local "${BUILD_CONTAINER}/etc/rc.local"
   
   msg "Copy the LXD preseed configuration"
   lxc file push --mode 0755 ${BUILD_PREREQS_PATH}/lxd-preseed.yaml "${BUILD_CONTAINER}/tmp/lxd-preseed.yaml"
-  
-  msg "Copy the gha-service unit file into gha-builder"
-  lxc file push ${BUILD_PREREQS_PATH}/gha-runner.service "${BUILD_CONTAINER}/etc/systemd/system/gha-runner.service"
 
   msg "Copy the apt and dpkg overrides into gha-builder - these prevent doc files from being installed"
   lxc file push --mode 0644 "${BUILD_PREREQS_PATH}/99synaptics" "${BUILD_CONTAINER}/etc/apt/apt.conf.d/99synaptics"

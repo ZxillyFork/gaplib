@@ -79,11 +79,11 @@ build_runner() {
 
 install_runner() {
     header "Installing runner"
-    sudo mkdir -p /opt/runner 
-    sudo tar -xf /tmp/runner/_package/*.tar.gz -C /opt/runner
+    sudo mkdir -p /home/runner/actions-runner 
+    sudo tar -xf /tmp/runner/_package/*.tar.gz -C /home/runner/actions-runner
     if [ $? -eq 0 ]; then
-        sudo chown ubuntu:ubuntu -R /opt/runner
-        /opt/runner/config.sh --version
+        sudo chown ubuntu:ubuntu -R /home/runner/actions-runner
+        /home/runner/actions-runner/config.sh --version
     fi
     return $?
 }
